@@ -769,7 +769,7 @@ C_{t_1,\ldots,t_n}(B)
 или монотонность, или неотрицательность, и так далее
 --- свойства, широко возникающие в практике. Причиной 
 является следующая теорема \cite[II-2-Теорема 5]{shiryaev-rus}:
-\begin{thm}\label{thm:}
+\begin{thm}\label{thm:shiryaevII-2-5}
 Любой элемент \(\sigma\)-алгебры 
 определяется \guillemetleft ограничениями\guillemetright,
 наложенными на функции \((x_t)_{t\in T}\) не более чем
@@ -1191,7 +1191,8 @@ e^{-\frac{1}{2}(x_1^2 + x_2^2)}dx_1dx_2\)
 несколько комментариев касательно нее.
 \begin{thm}\label{thm:kolmogorovcontver} (Колмогорова о непрерывной 
   версии процесса)
-Пусть \(T=[0,\infty)\), \((\xi_t)_{t\in T}\) --- случайный процесс. Если
+Пусть \(T=[0,\infty)\), \((\xi_t)_{t\in T}\) --- случайный процесс,
+задан на вероятностном пространстве \((\Omega,\mathscr{F},\PP)\). Если
 существуют числа \(\alpha,\beta,C>0\) при которых, для 
 всех \(s,t\in T\), 
 \begin{align*}
@@ -1202,7 +1203,7 @@ e^{-\frac{1}{2}(x_1^2 + x_2^2)}dx_1dx_2\)
 \begin{align*}
   \PP\big( \big\{ \omega \in \Omega \ : \
   \sup_{\substack{ 0<t-s<h(\omega)\\ s,t\in [0,\infty) }}
-  \frac{|\xi_t(\omega)-\eta_t(\omega)|}{|t-s|^{\gamma}} 
+  \frac{|\eta_t(\omega)-\eta_s(\omega)|}{|t-s|^{\gamma}} 
   \leq \delta
   \big\}  \big) = 1
 \end{align*}

@@ -1,0 +1,971 @@
+\documentclass[10pt]{article}
+%\documentclass[10pt]{scrartcl}
+
+\usepackage[marginparwidth=35pt,textheight=23cm,voffset=-1.2cm,footskip=1.3cm,voffset=0.2cm]{geometry}
+
+
+\usepackage{amsmath, amssymb, amsthm}
+
+\usepackage{mathrsfs}
+
+%\usepackage{mathabx}
+
+\usepackage[shortlabels]{enumitem}
+
+%\usepackage[dvips]{graphicx}
+%\usepackage[dvipsnames]{xcolor}
+
+%\usepackage{commath}
+
+%\usepackage{relsize}
+
+%\usepackage[cmtip,all]{xy}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,factor=1100,stretch=10,shrink=10]{microtype}
+
+
+ 
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+
+%\usepackage{cm-super}
+
+%\hyphenation{ма-те-ма-ти-ка вос-ста-нав-ли-вать}
+
+%\setlength\parindent{0pt}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,decorations.pathreplacing,arrows.meta,patterns,shapes.geometric}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\bfit}[1]{\textbf{\textit{#1}}}
+
+\newtheorem{thm}{Теорема}[section]
+
+\newtheorem{defn}[thm]{Определение}
+\newtheorem{prop}[thm]{Предложение}
+\newtheorem{lemma}[thm]{Лемма}
+\newtheorem{cor}[thm]{Следствие}
+
+\newtheoremstyle{boldnormal}
+    {\dimexpr\topsep/2\relax} % space above
+    {\dimexpr\topsep/2\relax} % space below
+    {\normalfont}  % body font (normal, not italic)
+    {}             % indent amount
+    {\bfseries}    % theorem head font
+    {}           % punctuation after theorem head
+    {.5em}         % space after theorem head
+    {}
+
+
+\theoremstyle{boldnormal}
+\newtheorem{zadachsemm}{Семинарная задача}[section] 
+\newtheorem{zadachkontt}{Контрольная задача}[section] 
+
+\newcommand{\N}{{\ensuremath{\mathbb{N}}}}
+\newcommand{\Z}{{\ensuremath{\mathbb{Z}}}}
+\newcommand{\Q}{{\ensuremath{\mathbb{Q}}}}
+\newcommand{\I}{{\ensuremath{\mathbb{I}}}}
+\newcommand{\R}{{\ensuremath{\mathbb{R}}}}
+%\newcommand{\C}{{\ensuremath{\mathbb{C}}}}
+
+\newcommand{\PP}{{\ensuremath{\mathbb{P}}}}
+
+
+\newcommand{\EE}{{\ensuremath{\mathbb{E}}}}
+
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\dtorus}{{\ensuremath{\mathbb{T}^d}}}
+\newcommand{\wasstwospace}{{\ensuremath{\mathscr{P}(\mathbb{T}^d)}}}
+
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+
+\newtheoremstyle{boldremark}
+    {\dimexpr\topsep/2\relax} % space above
+    {\dimexpr\topsep/2\relax} % space below
+  {}          % body font
+    {}          % indent amount
+    {\bfseries} % theorem head font
+    {}         % punctuation after theorem head
+    {.5em}      % space after theorem head
+    {}  
+
+\theoremstyle{boldremark}
+\newtheorem{rem}[thm]{Примечание}
+\newenvironment{remark}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\diamond$}\rem}
+  {\popQED\endrem}
+
+\newtheorem{hypo}[thm]{Условие}
+\newenvironment{hypp}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lhd$}\hypo}
+  {\popQED\endhypo}
+
+\newtheorem{examplex}[thm]{Пример}
+\newenvironment{example}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\examplex}
+  {\popQED\endexamplex}
+
+
+\newenvironment{zadachsem}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangleleft$}\zadachsemm}
+  {\popQED\endzadachsemm}
+
+\newenvironment{zadachkont}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangleright$}\zadachkontt}
+  {\popQED\endzadachkontt}
+
+
+
+ 
+\IfFileExists{C:/Users/s.mayorga/YandexDisk/Documents/mybibfile.bib}{%
+    \addbibresource{C:/Users/s.mayorga/YandexDisk/Documents/mybibfile.bib}%
+}{%
+    \IfFileExists{/Users/sergio/Yandex.Disk.localized/Documents/mybibfile.bib}{%
+        \addbibresource{/Users/sergio/Yandex.Disk.localized/Documents/mybibfile.bib}%
+    }{%
+        \typeout{Neither full path exists, trying local mybibfile.bib}%
+        \addbibresource{mybibfile.bib}%
+    }%
+}
+
+\newenvironment{sectionabstract}{%
+  \par\vspace{3pt}%
+  \hrule height 0.4pt depth 0pt \relax
+  \vspace{3pt}%
+  \itshape\small
+  \list{}{%
+    \leftmargin=2em
+    \rightmargin=2em
+    \topsep=0pt
+    \parsep=0pt
+  }%
+  \item\relax
+}{%
+  \endlist
+  \par\vspace{3pt}%
+  \hrule height 0.4pt depth 0pt \relax
+  \vspace{3pt}%
+}
+ 
+\usepackage{doi}
+
+\usepackage{hyperref}
+
+
+\author{\textbf{Лектор}: Сергей МАЙОРГА ТАТАРИН \\ \textbf{Конспектировали}: Ксения ГОРБУШИНА, Егор ШВЕЦОВ}
+\date{\today}
+\title{Лекция 3 \\ Теория случайных процессов \\ Программа AI360, Университет Иннополис}
+\begin{document}
+
+\maketitle
+
+\section{Первые классы случайных процессов}
+\begin{sectionabstract}
+    На этой лекции мы вводим 
+гауссовские, винеровские, стационарные процессы и процессы 
+с независимыми приращениями.
+\end{sectionabstract}
+
+Для конструкции, или обоснования существования,
+некоторых случайных процессов, как мы упоминали на прошлой 
+лекции очень полезным результатом оказывается следующая 
+теорема Колмогорова.
+\begin{thm}\label{thm:kolmogorovcontver} (Колмогорова о непрерывной 
+  версии процесса)
+Пусть \(T=[0,\infty)\), \((\xi_t)_{t\in T}\) --- случайный процесс,
+задан на вероятностном пространстве \((\Omega,\mathscr{F},\PP)\). Если
+существуют числа \(\alpha,\beta,C>0\) при которых, для 
+всех \(s,t\in T\), 
+\begin{align*}
+  \EE|\xi_s-\xi_t|^{\alpha} \leq C |t-s|^{1+\beta},
+\end{align*}
+то существует непрерывная модификация \((\eta_t)_{t\in T}\) 
+этого процесса, для которого 
+\begin{align*}
+  \PP\big( \big\{ \omega \in \Omega \ : \
+  \sup_{\substack{ 0<t-s<h(\omega)\\ s,t\in [0,\infty) }}
+  \frac{|\eta_t(\omega)-\eta_s(\omega)|}{|t-s|^{\gamma}} 
+  \leq \delta
+  \big\}  \big) = 1
+\end{align*}
+для любого \(\gamma\in (0,\frac{\beta}{\alpha})\) и 
+для какой-то константы \(\delta\) и функции \(h\),
+положительна для \(\mathbb{P}\)-п.в.~\(\omega\).
+\end{thm}
+
+Стоит напомнить о следующем понятии:
+\begin{defn}
+(Гёльдерова непрерывность)
+Функция $f$ называется \emph{гёльдерово непрерывной}
+с показателем $\gamma\in(0,1]$, если существует константа $L>0$
+такая, что для всех $t,s$ из области определения
+\[
+\frac{|f(t)-f(s)|}{|t-s|^\gamma}\le L.
+\]
+При $\gamma=1$ это условие переходит в условие липшицевой непрерывности.
+\end{defn}
+И так, при выполнении условий теоремы \ref{thm:kolmogorovcontver},
+случайный процесс имеет гёльдерову непрерывную модифицикацию.
+
+\textit{Идея доказательства теоремы \ref{thm:kolmogorovcontver}}. 
+Из неравенства Чебышёва получаем оценку
+\[
+\mathbb{P}(|\xi_t-\xi_s|\ge \varepsilon)\le C\varepsilon^{-\alpha}|t-s|^{1+\beta},\qquad \varepsilon>0.
+\]
+Рассмотрим множество двоичных рациональных чисел 
+$D=\bigcup_{n\in\mathbb{N}}\{k/2^n: k=0,1,\ldots,2^n\}$ на $[0,1]$.
+Выберем $\gamma\in(0,\beta/\alpha)$ и положим $\varepsilon=|t-s|^\gamma$.
+Для соседних точек из $D$ с расстоянием $|t-s|=2^{-n}$ имеем
+\[
+\mathbb{P}(|\xi_t-\xi_s|\ge 2^{-n\gamma})\le C\cdot 2^{-n(1+\beta-\gamma\alpha)}.
+\]
+Поскольку $1+\beta-\gamma\alpha>1$, сумма по $n$ этих вероятностей конечна.
+По лемме Бореля-Кантелли существует $\Omega^*\subset\Omega$ с $\mathbb{P}(\Omega^*)=1$,
+такое что для любого $\omega\in\Omega^*$ траектория $(\xi_t(\omega))_{t\in D}$
+равномерно непрерывна (и даже гёльдерова с показателем $\gamma$). То есть вывод теоремы доказано на $D$. Наличие этого свойства хочется доказать на всем отрезке $[0,1]$. Для $t\in[0,1]\setminus D$ выберем последовательность $t_k\in D$, $t_k\to t$.
+В силу равномерной непрерывности на $D$ предел $\lim_{t_k\to t}\xi_{t_k}(\omega)$
+существует для всех $\omega\in\Omega^*$ и не зависит от выбора последовательности.
+Определим $\eta_t(\omega)$ как этот предел, а для $t\in D$ положим $\eta_t(\omega)=\xi_t(\omega)$.
+Для $\omega\notin\Omega^*$ определим $\eta_t(\omega)$ произвольно (например, нулем).
+Последняя часть доказательства проверяет, что $(\eta_t)_{t\in T}$ --- искомая непрерывная модификация, удовлетворяющая условию Гёльдера.
+
+
+\begin{remark}
+Рассмотрим измеримое пространство $(\mathbb{R}^T,\ \mathcal{B}(\mathbb{R}^T))$, где $\mathbb{R}^T$ — множество всех действительных функций на $t$ (т.е. всех траекторий), а $\mathcal{B}(\mathbb{R}^T)$ — цилиндрическая сигма-алгебра на этом множестве.
+Пусть 
+\[
+C=\{x \in \mathbb{R}^T:\ x \text{ --- непрерывна}\}
+\]
+— множество непрерывных функций (непрерывных траекторий).
+Возникает вопрос: нет ли противоречия между теоремой Колмогорова о существовании непрерывной модификации и тем фактом, что множество непрерывных функций $C$ неизмеримо относительно цилиндрической сигма-алгебры $\mathcal{B}(\mathbb{R}^T)$? Ответ, конечно же --- нет. Дело в том, что \(C\) является множеством траектории, то есть подмножество множества 
+\(\Omega = \R^T\), \ldots
+\end{remark}
+
+Напомним, что некоторые процессы можно задавать в достаточно явном виде, что вероятность
+тех или иных событий, его касающихся, можно найти довольно легко.
+\begin{zadachsem}\label{zads:4puntkasvojstva} Пусть $
+\xi_t = x^2 + 2 t y + t^2, \quad t > 0,
+$ 
+где $X, Y$ — независимые случайные величины с распределением $\mathcal{N}(0,1)$.
+Найти: 
+\begin{enumerate}
+    \item $\mathbb{P}(\xi_t \text{ монотонно неубывающая}),$ — для траектории $\xi$;
+    \item $\mathbb{P}(\xi_t \text{ неотрицательная}),$ — для траектории $\xi$;
+    \item $\mathbb{P}(\exists t \in D : \xi_t = 0),$ где $D$ — счётное множество;
+    \item $\mathbb{P}(\exists t \in [0, \infty) : \xi_t = 0).$
+\end{enumerate}
+\end{zadachsem}
+\begin{zadachsem}\label{zads:lincombs1}
+Пусть $\xi_t = \sum_{j=1}^{n} X_j \varphi_j(t), \quad t \in T,$
+где $\varphi_j(t)$ — неслучайные функции от $t$,  
+$X_1, \dots, X_n$ — некоррелированные случайные величины с параметрами $\{ \mathbb{E} X_j, \mathrm{Var} X_j \}_{j=1}^n.$
+\begin{enumerate}
+\item Найти $m_\xi(t) = \mathbb{E}[\xi_t], \quad 
+K_\xi(t,s) = \mathrm{Cov}(\xi_t, \xi_s), \quad 
+\mathrm{Var}(\xi_t) = K_\xi(t,t).$
+\item Найти необходимые и достаточные условия,
+при которых существует гауссовский процесс $(\xi_t)_{t \in T}$ с
+заданными численными характеристиками $m_\xi(t) = f(t)$, $K_\xi(s,t)
+= g(s,t),$ где $f$ и $g$ — заданные вещественные функции.
+\end{enumerate}
+\end{zadachsem}
+
+\paragraph{Характеристические функции процесса}
+
+Полезность метода характеристических функций только увеличивается при изучении 
+стохастических процессов. 
+\begin{defn}(Характеристические функции случайного процесса)
+Пусть $(\xi_t)_{t \in T}$ — случайный процесс. Его характеристические функции задаются как
+\[
+\phi_{t_1, \dots, t_n}(x_1, \dots, x_n) = 
+\mathbb{E} \exp\Big(i \sum_{j=1}^n \xi_{t_j} x_j \Big),
+\]
+где $t_1, \dots, t_n \in T$, $x_1, \dots, x_n \in \mathbb{R}$.
+\end{defn}
+
+\subsection{Гауссовские процессы}\label{subsection:gaussproc}
+\begin{defn}(Положительно определенная функция)\footnote{Более правильным названием было бы
+\emph{неотрицательно определенная} функция.}
+$\Gamma: T \times T \rightarrow \mathbb{R}$ называется положительно определённой если: $\forall (x_1, \dots, x_n) \text{ и } \{t_1, \dots, t_n\} \subset T:$
+$$ \sum_{l=1}^n \sum_{k=1}^n \Gamma(t_l, t_k) x_l x_k \geq 0. $$
+\end{defn}
+
+Введем один из важнейших классов случайных процессов.
+\begin{defn}\label{defn:gaussproc}(Гауссовский процесс) Случайный процесс $(\xi_t)_{t \in T}$ называется \emph{гауссовским}, если все его характеристические функции имеют такой же вид, как характеристические функция гауссовского вектора:
+\begin{equation}
+\label{eq:charfngaussprocess}
+\phi_{t_1,\dots,t_n}(x_1,\dots,x_n) =
+\exp\Biggl(
+i \sum_{j=1}^n x_j m(t_j)
+- \frac{1}{2} \sum_{l=1}^n \sum_{j=1}^n K(t_l, t_j) x_l x_j
+\Biggr),
+\end{equation}
+для какой-то функции \(m_{\xi}(t)\) и положительно определенной
+функции \(K_{\xi}(s,t)\).
+\end{defn}
+В случае, когда \(T=\{1,\ldots,n\}\), мы получаем
+определение \textit{гауссовского вектора}, общего, без 
+прилагательного «полноранговый», что есть естественное 
+обобщение понятия полнорангового гауссовского вектора из
+нашего курса по теории вероятностей: в самом деле, если 
+\(T=\{1,\ldots,n\}\) и 
+\(K\) --- положительно определенная функция на \(T\times T\),
+то 
+матрица \([K(i,j)]_{i,j=1}^n\) является симметричной и
+неотрицательно определенной, и тогда в 
+формуле \eqref{eq:charfngaussprocess} мы узнаем 
+характеристическую функцию полнорангового гауссовского 
+вектора. А поскольку характеристическая функция 
+случайного вектора однозначно определяет
+его распределение
+(см.~\cite[II-12-Теорема 3]{shiryaev-rus}
+и \cite[II-12-Задача 3]{shiryaev-rus})
+то \((\xi_1,\ldots,\xi_n)\) --- полноранговый случайный
+вектор.
+
+И так, теперь мы можем сказать, что из 
+определения \ref{defn:gaussproc} следует,
+что конечномерные распределения гауссовского процесса
+суть распределения гауссовского вектора,
+компоненты которого составлены из его сечений. 
+В частности, если \((\xi_t)_{t\in T}\) --- гауссовский 
+процесс, то векторное сечение \((\xi_{t_1},\ldots,\xi_{t_n})\) 
+имеет вектор средних \(m(t_1),\ldots,m(t_n)\) и 
+ковариационную матрицу \([K(t_i,t_j)]_{i,j=1}^n\). 
+Другими словами, у гауссовского процесса \((\xi_t)_{t\in T}\),
+функция среднего, \(m_{\xi}\), и ковариационная функция
+\(K_{\xi}\), в точности совпадают с функциями 
+\(m\) и \(K\), фигурирующими в определении \eqref{eq:charfngaussprocess},
+и для любого набора \(T_0=\{t_1,\ldots,t_n\}\) ограничения 
+этих функции на \(T_0\) и \(T_0\times T_0\), соответственно,
+суть вектор средних и ковариационная матрица векторного
+сечения \((\xi_{t_1},\ldots,\xi_{t_n})\).
+\begin{remark}\label{remark:gaussprocdetbychars}
+Таким образом мы видим, что все 
+ конечномерные распределения гауссовского процесса \((\xi_t)_{t\in T}\)
+ полностью определяются двумя характеристиками: функцией среднего $m_\xi(t)$,
+ковариационной функцией $K_\xi(t,s)$, ибо эти две характеристики
+определяют характеристические функций любых векторных 
+сечений процессы, которые,
+в свою очередь, определяют конечномерные распределения.
+\end{remark}
+В матричной форме формула \eqref{eq:charfngaussprocess} принимает такой вид:
+$$
+\phi_{t_1,\ldots,t_n}({x}) = 
+\exp\big( i {m}_\xi^\intercal  {x} - \frac{1}{2} {x}^\intercal K {x} \big),
+$$ 
+где ${m}_\xi = (m_\xi(t_1),\dots,m_\xi(t_n))^T$ и
+$K = [K_\xi(t_i, t_j)]_{i,j=1}^n$.
+Если матрица $K = \{K_\xi(t_i, t_j)\}_{i,j=1}^n$ положительно определена,
+то, при рассмотрении векторного сечения 
+\((\xi_{t_1},\ldots,\xi_{t_n})\), как было сказано выше, мы имеем дело
+с полноранговым гауссовским вектором, то есть, у него есть плотность, 
+и она равна
+\[
+p_{\xi_{t_1},\dots,\xi_{t_n}}(x_1,\dots,x_n) =
+(2\pi)^{-n/2} (\det K)^{-1/2} 
+\exp\big( -\frac{1}{2} ({x} - {m_\xi(t)})^\intercal K^{-1}({x}
+ - {m_\xi(t)}) \big),
+\]
+\begin{lemma}\label{lemma:existencegaussproc}
+Для любой положительно определённой $\Gamma$ существует
+гауссовский процесс с ковариационной функцией $K_\xi = \Gamma$.
+\begin{proof}
+Семейство конечномерных распределений можно задать
+естественным образом таким, чтобы характеристические функции 
+процесса, в случае его существования, совпадали 
+с \eqref{eq:charfngaussprocess} --- а именно, для 
+\(n\in \N\) и \(t_1,\ldots,t_n\) 
+распределение (мера на \(\R^n\)) \(Q_{t_1,\ldots,t_n}\) можем 
+задать 
+как распределение случайного вектора, у которого 
+характеристическая функция совпадает с \eqref{eq:charfngaussprocess}.
+Если бы \(\Gamma\) была строго положительна, то все 
+эти гауссовские векторы были бы полноранговыми и стало бы легко 
+проверять согласованность этого семейства конечномерных 
+распределений (из чего, по теореме Колмогорова, следовало бы 
+существование искомого процесса).
+\end{proof}
+\end{lemma}
+
+\subsection{Винеровские процессы и процессы 
+с независимыми приращениями}\label{subsection:wienerandindincr}
+
+Важнейший гауссовский процесс --- винеровский процесс. Определим 
+его как гауссовский процесс, удовлетворяющий трем ключевым условиям.
+\begin{example}
+Проверим, что $\Gamma(s,t) = \min\{s,t\}$ --- положительно определенная.
+$$ \Gamma(s,t) = \min\{s,t\} = \int_0^\infty I(0 < \theta \leq s) I(0 < \theta \leq t) d\theta.$$
+Берём произвольный набор вещественных чисел $x_1, \dots, x_n$
+и моменты времени $t_1, \dots, t_n$ и посчитаем:
+\begin{align*} 
+\sum_{l=1}^n\sum_{k=1}^n \Gamma(t_l,t_k)x_lx_k & \ =   \sum_{l=1}^n \sum_{k=1}^n \int_0^\infty I(0 < \theta \leq t_l) I(0 < \theta \leq t_k) d\theta \, x_l x_k 
+    \\
+    & \ = \int_0^\infty \left( \sum_{l=1}^n \sum_{k=1}^n
+    I(0 < \theta \leq t_l) x_l I(0 < \theta \leq t_k) x_k \right)
+    d\theta =
+ \\
+    & \ = \int_0^\infty \left( \sum_{l=1}^n I(0 < \theta \leq t_l)
+    x_l \right)^2 d\theta \geq 0,
+\end{align*}
+что и требовалось доказать.
+\end{example}
+Из этого факта и леммы \ref{lemma:existencegaussproc} 
+следует, что существует \emph{гауссовский} процесс \((W_t)_{t\geq 0}\),
+удовлетворяющий первым двум из следующих трех условий:
+\begin{enumerate}
+    \item $\EE W_t = 0, \quad t \geq 0$.
+    \item $K_W(s,t) = \min\{s,t\}, \quad \forall s,t$.
+    \item Все траектории непрерывные.
+\end{enumerate}
+А то, что существует процесс \((W_t)_{t\geq 0}\), который удовлетворяет 
+всем трем, будет вытекать из
+теоремы \ref{thm:kolmogorovcontver}
+(о существование
+непрерывной версии процесса).
+Для доказательства
+выполнения условий теоремы \ref{thm:kolmogorovcontver} 
+покажем сначала следующее:
+\begin{center}
+Из вышеналоженных свойств 1.~и 2.~следует:
+
+\vspace{0.2cm}
+\(W_{t_2} - W_{t_1} \sim \mathcal{N}(0, t_2 - t_1), \text{ для всех } t_1 < t_2\).
+\end{center}
+В самом деле:
+\begin{align*}\text{Var}(W_{t_2}-W_{t_1}) 
+    = & \ \text{Cov}(W_{t_2}-W_{t_1}, W_{t_2}-W_{t_1}) = 
+    \\    
+= & \ \text{Cov}(W_{t_2}, W_{t_2}) - \text{Cov}(W_{t_2}, W_{t_1}) 
+- \text{Cov}(W_{t_1}, W_{t_2}) + \text{Cov}(W_{t_1}, W_{t_1}) 
+\\
+= & \  t_2-t_1-t_1+t_1 = t_2-t_1,
+\end{align*}
+а $\EE(W_{t_2}-W_{t_1})=\EE W_{t_2}- \EE W_{t_1} =0$.
+Факт, что распределения приращений (т.~е.~случайных величин \(W_{t_2}-W_{t_1}\))
+имеют гауссовские распределения с нулевыми средними и дисперсиями, равными 
+длинам промежутков времени является важным сам по себе, но и позволяет 
+обеспечить третье свойство из списка: четвертый момент случайной 
+величины с распределением \(\mathcal{N}(0,\sigma^2)\), будучи 
+равным \(3\sigma^4\), дает:
+$\EE|W_{t_2}-W_{t_1}|^4 = 3(t_2-t_1)^2$, что означает 
+что условий теоремы \ref{thm:kolmogorovcontver} 
+выполняются со значениями \(\beta = 1, \alpha = 4\).
+Поэтому для любого $\gamma \in (0, 1/4)$,
+существует модификация процесса \((W_t)_{t\geq 0}\), удовлетворяющий 
+свойствам 1 и 2 такой, у которого
+траектории $W_{\cdot}$
+являются $\gamma$-Гёльдерово непрерывными для любого 
+\(\gamma\in (0,1/4)\); модификацию обозначим 
+опять же через \((W_t)_{t\geq 0}\).
+
+И так, гауссовский процесс \((W_t)_{t\geq 0}\),
+удовлетворяющий условиям 1, 2, и 3, существует. Такой процесс 
+называется \textit{\textbf{стандартными винеровским процессом}}.
+
+Его «стандартность» заключается в том, что 
+\(W_1 \sim \mathcal{N}(0,1)\). Очевидно, что можно 
+построить аналогичный процесс, для которого \(W_1 \sim \mathcal{N}(0,\sigma^2)\)
+для любого \(\sigma > 0\).
+
+Отметим также, что порядок гёлдеровости винеровского процесса
+можно увеличить до любого \(\gamma < 1/2\), но не до \(1/2\);
+об этом поговорим на следующей лекции.
+
+\paragraph{Плотность конечномерных распределений винеровского процесса} 
+Найдём плотность векторного сечения винеровского процесса.
+Пусть $(W_t)_{t \geq 0}$ --- винеровский процесс,
+\[
+0=t_0<t_1<\dots<t_n,
+\]
+и
+\[
+X=(W_{t_1},\dots,W_{t_n})^{\intercal}.
+\]
+Ковариационная матрица имеет вид
+(так как $\operatorname{Cov}(\xi_{t_1}, \xi_{t_2})
+= \min\{t_1, t_2\}$):
+\[
+\operatorname{Cov}(X)=
+\begin{pmatrix}
+t_1 & t_1 & t_1 & \dots & t_1 \\
+t_1 & t_2 & t_2 & \dots & t_2 \\
+t_1 & t_2 & t_3 & \dots & t_3 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+t_1 & t_2 & t_3 & \dots & t_n
+\end{pmatrix}.
+\]
+Положим
+\[
+x_1=y_1,\quad
+x_2=y_1+y_2,\quad
+\dots,\quad
+x_n=y_1+\dots+y_n,
+\]
+то есть
+\[
+y_1 = x_1, y_2 = x_2 - x_1, \ldots, y_n = x_n - x_{n-1}.
+\]
+Это можно сказать и тем, что 
+\[
+y= Tx,
+\]
+где
+{\small 
+\begin{align*}
+y = \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix},
+\quad 
+x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix},
+\quad 
+T = 
+\begin{pmatrix}
+1 & 0 & 0 & 0 & \cdots & 0 & 0 
+\\
+-1 & 1 & 0 & 0 & \cdots & 0 & 0
+\\
+0 & -1 & 1 & 0 & \cdots & 0 & 0
+\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots 
+\\
+0 & 0 & 0 & 0 & \cdots & -1 & 1
+\end{pmatrix}
+\end{align*}
+}
+Из курса теории вероятности знаем, что 
+вектор \(Y\), полученный как 
+\(Y= TX\), как и \(X\) будет 
+гауссовским вектором, со
+средними \(0\) (потому что \(T0 = 0\)),
+и с ковариационной матрицей 
+\(T\operatorname{Cov}(X)T^{\intercal}\).
+Умножаем:
+{\footnotesize 
+\begin{align*}
+T\operatorname{Cov}(X) = & \  
+\begin{pmatrix}
+1 & 0 & 0 & 0 & \cdots & 0 & 0 
+\\
+-1 & 1 & 0 & 0 & \cdots & 0 & 0
+\\
+0 & -1 & 1 & 0 & \cdots & 0 & 0
+\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots 
+\\
+0 & 0 & 0 & 0 & \cdots & -1 & 1
+\end{pmatrix} 
+\begin{pmatrix}
+t_1 & t_1 & t_1 & t_1 & \cdots & t_1 & t_1 
+\\
+t_1 & t_2 & t_2 & t_2 & \cdots & t_2 & t_2
+\\
+t_1 & t_2 & t_3 & t_3 & \cdots & t_3 & t_3
+\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots 
+\\
+t_1 & t_2 & t_3 & t_4 & \cdots & t_{n-1} & t_n
+\end{pmatrix}
+\\
+= & \ 
+\begin{pmatrix}
+t_1 & t_1 & t_1 & t_1 & \cdots & t_1 & t_1  
+\\
+0 & t_2 - t_1 & t_2 - t_1 & t_2 - t_1  & \cdots & t_2 - t_1 & t_2 - t_1
+\\
+0 & 0  & t_3 - t_2 & t_3 - t_2 & \cdots & t_3 - t_2 & t_3 - t_2
+\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots 
+\\
+0 & 0 & 0 & 0 & \cdots & 0 & t_n - t_{n-1}
+\end{pmatrix},
+\end{align*}
+}
+{\footnotesize 
+\begin{align*}
+T\operatorname{Cov}(X)T^{\intercal}
+= & \ 
+\begin{pmatrix}
+t_1 & t_1 & t_1 & t_1 & \cdots & t_1 & t_1  
+\\
+0 & t_2 - t_1 & t_2 - t_1 & t_2 - t_1  & \cdots & t_2 - t_1 & t_2 - t_1
+\\
+0 & 0  & t_3 - t_2 & t_3 - t_2 & \cdots & t_3 - t_2 & t_3 - t_2
+\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots 
+\\
+0 & 0 & 0 & 0 & \cdots & 0 & t_n - t_{n-1}
+\end{pmatrix}
+\begin{pmatrix}
+1 & -1 & 0 & 0 & \cdots & 0 & 0 
+\\
+0 & 1 & -1 & 0 & \cdots & 0 & 0
+\\
+0 & 0 & 1 & -1 & \cdots & 0 & 0
+\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots 
+\\
+0 & 0 & 0 & 0 & \cdots & 0 & 1
+\end{pmatrix} 
+\\
+= & \ 
+\begin{pmatrix}
+t_1 & 0 & 0 & 0 & \cdots & 0 & 0 
+\\
+0 & t_2 - t_1 & 0 & 0 & \cdots & 0 & 0
+\\
+0 & 0 & t_3 - t_2 & 0 & \cdots & 0 & 0
+\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots 
+\\
+0 & 0 & 0 & 0 & \cdots & 0 & t_n - t_{n-1}
+\end{pmatrix}.
+\end{align*}
+}
+Обратная от этой диагональной матрицы --- диагональная матрица 
+с обратными диагональными элементами. Поэтому
+$$
+p_{Y}(y_1, \dots, y_n) 
+= \frac{1}{\sqrt{(2\pi)^{\frac{n}{2}} t_1 (t_2-t_1) \dots (t_n-t_{n-1})}}
+\exp \big( -\frac{1}{2} \sum_{i=1}^n 
+\frac{y_i^2}{t_i - t_{i-1}} \big).
+$$
+Но по формуле преобразования плотностей из курса 
+теории вероятностей, так как в данном случае
+якобиан матрицы \(T\) равен \(1\), получаем:
+$$
+p_{W_{t_1}, \dots, W_{t_n}}(x_1, \dots, x_n)
+= \frac{1}{\sqrt{(2\pi)^{\frac{n}{2}}
+t_1 (t_2-t_1) \dots (t_n-t_{n-1})}} 
+\exp \bigg( -\frac{1}{2} \sum_{i=1}^n 
+\frac{(x_i - x_{i-1})^2}{t_i - t_{i-1}} \bigg).
+$$
+В итоге, если
+$(W_t)_{t \geq 0}$ --- винеровский процесс, то
+$W_{t_2}-W_{t_1}, W_{t_3}-W_{t_2}, \dots, W_{t_n}-W_{t_{n-1}}$
+образуют совокупность независимых случайных величин.
+Таким образом, винеровский процесс имеет свойство «независимых приращений».
+\begin{defn}\label{defn:indincrproc}
+Случайный процесс \((\xi_t)_{t\in T}\)
+называется \emph{процессом с независимыми приращениями}
+если для всех $t_0 < t_1 < \dots < t_n$:
+случайные величины $\xi_{t_1}-\xi_{t_0}, \dots, \xi_{t_n}-\xi_{t_{n-1}}$
+суть независимы.
+\end{defn}
+Мы только что показали, что
+винеровский процесс обладает такими свойствами:
+\begin{enumerate}[(i)]
+    \item $W_0=0$.
+    \item $W_t - W_s \sim \mathcal{N}(0, t-s)$ при  $s<t$.
+    \item Имеет независимые приращения.
+    \item Его траектории непрерывные.
+\end{enumerate}
+Стоит еще сказать, что нетрудно доказать (упражнение),
+что эти свойства характеризуют винеровский процесс,
+то есть если случайный процесс удовлетворяет этим четырем свойствам
+(i), (ii), (iii), (iv),
+то он винеровский --- то есть, 
+он --- гауссовский процесс удовлетворяющий свойствам 1, 2, и 3 
+из нашего определения винеровского процесса. 
+Поэтому, для проверки, является ли какой-то процесс винеровским,
+можно воспользоваться как и списком свойств 1-2-3, так 
+и списком свойств (i)-(ii)-(iii)-(iv).
+
+\subsubsection{Некоторые свойства винеровских процессов}
+
+\begin{zadachsem}
+    Пусть \((W_t)_{t\geq 0}\) --- винеровский процесс. Доказать,
+    что следующие процессы
+    тоже винеровские:
+    \begin{enumerate}[(a)]
+    \item \((B_t)_{t\geq 0}\) где \(B_t = t W_{1/t}\);
+    \item \((X_t)_{t\geq 0}\) где \(a>0\) и \(X_t = W_{t+a}-W_a\);
+    \item \((X_t)_{t\geq 0}\) где \(a>0\) и 
+    \(X_t = W_t  + 2(W_{a}-W_t) I(t\geq a)\).
+    \end{enumerate}
+\end{zadachsem}
+
+\begin{zadachsem} 
+    Пусть $(W_t^1)_{t\geq 1}, \ldots, (W_t^d)_{t\geq 1}$
+     --- независимые винеровские процессы. 
+     Поясните, что означает независимость совокупности 
+     случайных процессов.
+     Докажите, что с вероятностью 1 процесс (многомерный) \((W_t)_{t\geq 0}\), где 
+    $W_t=\left(W_t^1, \ldots, W_t^d\right)$, \(t\geq 0\)
+    (многомерный винеровский процесс) выйдет из шара произвольного фиксированного
+    радиуса $r$ с центром в нуле пространства $\mathbb{R}^d$.
+\end{zadachsem}
+\begin{defn}
+Функция $g: [a,b] \to \mathbb{R}$ называется 
+функцией \emph{с ограниченной вариацией} на отрезке $[a,b]$,
+если существует константа $M < \infty$ такая, что для любого разбиения 
+\[
+\mathcal{T}: \quad a = t_0 < t_1 < \dots < t_n = b, \quad n \in \mathbb{N}
+\]
+выполняется неравенство
+\[
+\sum_{k=1}^{n} |g(t_k) - g(t_{k-1})| \le M.
+\]
+Величина
+\[
+V_a^b(g) := \sup_{\mathcal{T}} \sum_{k=1}^{n} |g(t_k) - g(t_{k-1})|
+\]
+называется \emph{полной вариацией} функции $g$ на $[a,b]$.
+\end{defn}
+\begin{zadachkontt}
+    Пусть $(W_t)_{t\geq 0}$ --- 
+    винеровский процесс. Докажите, что с вероятностью 
+    1 его траектория имеет неограниченную вариацию
+    на произвольном отрезке $[a, b] \subset [0,\infty)$, т.~е.~что
+$$
+V_a^b(W_{\cdot}) : = \sup_{\mathcal{T}} \sum_{i=1}^n\left|W_{t_{i+1}}-W_{t_i}\right|
+= +\infty \quad \text { п.н., }
+$$
+где $\mathcal{T}=\left\{a=t_0<\ldots<t_n=b\right\}$
+--- разбиение отрезка $[a, b]$.
+\end{zadachkontt}
+
+
+
+\begin{zadachkontt}
+Пусть \((W_t)_{t\geq 0}\) --- винеровский процесс.
+Для каждого \(n\in \mathbb{N}\) рассмотрим такое разбиение
+отрезка \([a,b]\) точками 
+\[
+a=t_{n;0} < \cdots < t_{n;N(n)} = b,
+\]
+где \(N(n)\in \N\), чтобы \(\Delta_n \to 0\) при \(n\to\infty\), 
+где \[
+\Delta_n =\max\limits_{k=0,\ldots,N(n)}(t_{n;k+1}-t_{n;k}).
+\]
+Найдите предел в среднем квадратическом 
+величин \(U_n\) при \(n\to\infty\),
+где $$
+U_n = \sum_{k=1}^{N(n)} (W_{t_{nk}} - W_{t_{nk-1}})^2.
+$$
+\end{zadachkontt}
+
+\subsection{Стационарные процессы}
+\begin{defn}
+Случайный процесс $(\xi_t)_{t \in T}$
+называется \emph{cтационарным в узком смысле}, если для всех \(n\in\N\) и всех $t_1, \dots, t_n$:
+$$
+(\xi_{t_1}, \dots, \xi_{t_n}) \overset{d}{=} (\xi_{t_1+h}, \dots, \xi_{t_n+h})
+$$ 
+--- то есть, векторные сечения, сдвинуты по времени,
+имеют одинаковое распределение.
+\end{defn}
+Другими словами, стационарный в узком смысле процесс характеризуется тем,
+что для любого \(h\), процессы \((\xi_t)_{t\in T}\) и \((\xi_{t+h})_{t\in T}\) имеют
+один и те же конечномерные распределения.
+
+Для стационарного в узком смысле процесса 
+\((\xi_t)_{t\in T}\), $m_\xi(t)$ не зависит от \(t\), и
+ $K_\xi(s,t) = C(t-s)$, где 
+ $$
+ C(t-s) := \operatorname{Cov}(\xi_{t-s}, \xi_0) = \operatorname{Cov}(\xi_t, \xi_s)
+ = K_{\xi}(s,t).
+$$
+Примером стационарного процесса в узком смысле в «дискретном времени» служит
+так называемый \textit{дискретный белый шум}: последовательность
+$\varepsilon_1, \varepsilon_2, \varepsilon_3, \dots$, независимых, одинакового 
+распределенных случайный величин с распределением 
+$\mathcal{N}(0, \sigma^2)$ у каждой.
+\begin{defn}
+Случайный процесс $(\xi_t)_{t \in T}$
+называется \emph{cтационарным в широком смысле}, если
+его функция среднего --- постоянная, а его ковариационная функция 
+\(K_{\xi}(s,t)\) зависит только от разности \(t-s\) ее аргументов.
+\end{defn}
+Зависимость ковариационной функции только от разности 
+аргументов означает, что \(K_{\xi}(t_1,t_2)=K_{\xi}(t_1+s,t_2+s)\) для всех 
+\(t_1,t_2,s\).
+
+Ясно, что если процесс стационарный в узком смысле, то он стационарный и
+в широком, но обратный вывод неверен.
+\begin{example}\label{example:weakbutnotstrongsp}
+Пусть \(T=\Z\), \(\{\xi_j\}_{j\in \Z}\) --- последовательность 
+независимых случайный величин, \(\xi_j\sim \mathcal{N}(0,1)\) 
+для \(j\leq 0\), а для \(j\geq 1\), \(\PP(\xi_j=1)=\PP(\xi_j=-1)=1/2\).
+Очевидно, этот процесс стационарен в широком смысле, но даже его 
+одномерные распределения не сохраняются при сдвигах, а значит 
+он не стационарен в узком смысле.
+\end{example}
+Перед тем как дать еще примеры, скажем несколько слов о стационарных процессах.
+Они служат базовой моделью во многих областях и 
+в прикладных областях именно 
+с них и началось то, что сейчас называется теория случайных процессов.
+Например, в радиотехнике и связи
+для описания сигналов на несущей частоте со случайной фазой
+стационарны, что позволяет рассчитывать помехоустойчивость
+и проектировать оптимальные приёмники. В геофизике и астрономии
+помогают в анализе шумов в данных гравитационных обсерваторий,
+флуктуаций космического фона или сейсмических
+записей; спектральный анализ позволяет выделять слабые сигналы на фоне помех:
+для стационарных процессов (в широком смысле) существует
+глубокая связь между временн\'oй и частотной областями.
+Корреляционная функция и спектральная плотность
+мощности связаны преобразованием Фурье (теорема Винера–Хинчина). Это позволяет
+изучать процесс как суперпозицию гармонических колебаний разных частот,
+анализировать прохождение случайных сигналов через линейные системы
+простыми алгебраическими методами,
+решать задачи прогноза и фильтрации (например, выделять полезный сигнал из шума).
+Весь этот аппарат опирается именно на предположение о стационарности;
+для нестационарных процессов подобные методы либо неприменимы,
+либо требуют гораздо более сложных подходов.
+\begin{example}\label{example:Uandphicomplex}
+Пусть
+$\xi_t = U e^{i(\lambda t + \varphi)}$ (где \(i=\sqrt{-1}\)), $t \in \mathbb{R}$,
+$U$ --- случайная величина,
+$\lambda\in \mathbb{R}$ константа
+$D = \EE U^2 < \infty$,
+$\EE U = 0$,
+$\varphi \sim \text{Uni}(-\pi, \pi)$, $\varphi$ и $U$ --- независимые.
+Рассматриваемый процесс представляет собой комплексную запись гармонического колебания
+со случайными амплитудой \(U\) и фазой \(\varphi\).
+Его можно представить в виде суммы синфазной и
+квадратурной компонент:
+\[
+\xi_t = U\cos(\lambda t + \varphi) + i\,U\sin(\lambda t + \varphi).
+\]
+Проверим условия стационарности в широком смысле. Имеем: 
+$$
+\EE \xi_t = (\EE U) (\EE e^{i(\lambda t + \varphi)}) = 0
+$$
+из-за независимости \(U\) и \(\varphi\);
+\begin{align*}
+K_\xi(s,t) = & \ 
+\EE \xi_s \overline{\xi_t} - \EE \xi_s \EE \overline{\xi_t} 
+= \EE \xi_s \overline{\xi_t} 
+= \EE(U^2 e^{i(\lambda s + \varphi)} e^{-i(\lambda t + \varphi)}) 
+= \EE U^2 \EE e^{i\lambda(s-t)}
+\\
+= & \ D \EE e^{i\lambda(s-t)}.
+\end{align*}
+Значит, этот процесс стационарный в широком смысле. Но также и в узком: покажем,
+что конечномерные распределения процесса не меняются при сдвигах временн\'oго аргумента.
+Ради простоты рассмотрим двухмерные распределения вещественной части.
+Пусть 
+\begin{align*}
+  X_h = (U\cos(\lambda(t_1+h)+\varphi),U\cos(\lambda(t_2+h)+\varphi)).
+\end{align*}
+Тогда характеристическая функция вектора \(X_h\) равна
+\begin{align*}
+  & \ \phi_{X_h}(x_1,x_2) = \EE e^{i(x_1,x_2)\cdot X_h} =  
+   \EE e^{i(x_1 U\cos(\lambda(t_1+h)+\varphi) + x_2 U \cos(\lambda(t_2+h)+\varphi) )}
+   \\
+=  & \  \frac{1}{2\pi} \int\limits_{\R}
+\int\limits_{-\pi}^{\pi}
+e^{i(x_1 u\cos(\lambda(t_1+h)+y) + x_2u \cos(\lambda(t_2+h)+y))}
+dy dF_U(u)
+\\
+ = & \  \frac{1}{2\pi}\int\limits_{\R}
+\int\limits_{-\pi}^{\pi}
+\cos\big((x_1 u\cos(\lambda(t_1+h)+y) + x_2u \cos(\lambda(t_2+h)+y))\big)
+dy dF_U(u)
+\\
+& \ \qquad \qquad + 
+\frac{i}{2\pi} \int\limits_{\R}
+\int\limits_{-\pi}^{\pi}
+\sin\big((x_1 u\cos(\lambda(t_1+h)+y) + x_2u \cos(\lambda(t_2+h)+y))\big)
+dy dF_U(u).
+\end{align*}
+Но поскольку функция \(\cos\) --- периодическая на интервале \((-\pi,\pi)\),
+эти интегралы не будут зависеть от \(h\).
+
+Дисперсия этого процесса, \(D=K_{\xi}(s,s)=\mathbb{E}U^2\),
+интерпретируется как средняя мощность сигнала.
+Равномерное распределение \(\varphi\) делает процесс стационарным.
+В физике это означает, что у нас нет выделенного момента времени;
+фаза сигнала «размазана» равновероятно по всем возможным значениям
+в силу того, что в
+любой момент времени \(t\) значение фазы равномерно на окружности.
+Если бы фаза была фиксирована, процесс не был бы стационарным
+(его статистические свойства зависели бы от абсолютного времени \(t\)).
+
+Такой процесс  
+    представляет собой классическую и простейшую
+    модель \textit{узкополосного случайного процесса} (сигнала на несущей частоте \(\lambda\)). 
+    Случайность амплитуды \(U\) описывает непостоянность
+    в уровне сигнала, а случайность фазы \(\varphi\) — набег
+    фазы при распространении в среде со случайными неоднородностями.
+    Этим процессом можно также описать простейший случай
+    монохроматической электромагнитной волны
+    со случайной амплитудой и фазой,
+    возникающей, например, после прохождения
+    света через турбулентную атмосферу или при отражении от шероховатой поверхности.    
+    %
+    % Это простейший пример процесса, который стационарен,
+    % но не является эргодическим по амплитуде: 
+    % При фиксированной реализации фаза \(\varphi\) закреплена, и усреднение по времени даёт 
+    % \[
+    % \lim_{T\to\infty}\frac1T\int_0^T |\xi_t|^2\,dt = \frac{U^2}{2},
+    % \]
+    % тогда как среднее по ансамблю \(\mathbb{E}|\xi_t|^2 = \mathbb{E}U^2 = D\). 
+    % Эти величины совпадают только в вырожденном случае, когда \(U\) — константа.
+%
+\end{example}
+
+\begin{example}
+    Пусть $(\xi_t)_{t \in T}$ гауссовский процесс,
+$m(t) = \EE\xi_t = m$ (константе),
+$K_\xi(s,t) = C(t-s)$ (функции от \(C\)).
+Тогда этот процесс стационарный и в узком смысле.
+Это выходит из характеристической функции:
+$$
+\varphi_{t_1, \dots, t_n}(x_1, \dots, x_n) 
+= \exp \left( i m \sum_{j=1}^n x_j 
+- \frac{1}{2} \sum_{l=1}^n \sum_{j=1}^n C(t_l-t_j) x_l x_j \right),
+$$
+потому что она не меняется при сдвигах во времени.
+\end{example}
+
+Что можно сказать насчет винеровских процессов и стационарности?
+\begin{example}
+ Пусть $(W_t)_{t \geq 0}$ --- винеровский процесс. 
+Так как \(K_W(s,t)=s\wedge t\), а это не функция от \(t-s\),
+винеровский процесс не стационарен.
+Но процесс \((X_t)_{t\geq 0}\), где
+$X_t = W_{t+a} - W_t$ при фиксированной константе $a > 0$,
+то есть процесс составлен из приращений значений винеровского процесса
+за промежуток длины $a$ --- является стационарным в узком смысле.
+\end{example}
+\begin{zadachsem}
+Пусть \(\xi_t = X\cos(t+Y)\), \(t\geq 0\), где \(X\) и \(Y\) независимые случайные
+величины, \(X\sim \mathcal{N}(0,1)\), \(Y\sim \textrm{Uni}(-\pi,\pi)\).
+\begin{enumerate}[(a)]
+    \item Найти \(m_{\xi}(t)\) и \(K_{\xi}(s,t)\).
+    \item Процесс \((\xi_t)_{t\geq 0}\) --- гауссовский?
+    \item Процесс \((\xi_t)_{t\geq 0}\) --- стационарный?
+\end{enumerate}
+\end{zadachsem}
+
+\begin{zadachsem}
+
+\begin{enumerate}
+    \item Пусть \(\xi_1,\xi_2\) --- независимые случайные величины, 
+    \(\PP(\xi_j=1)=\PP(\xi_j=-1)=1/2\), \(j=1,2\). 
+    В каком смысле стационарен процесс \(\eta_t = \xi_1 \sin t + 
+    \xi_2 \cos t\) (\(t\in \R\))?
+    \item Пусть \(f:\R\to \R\) --- периодическая функция
+    с периодом \(t_p >0\) и \(\xi\sim\textrm{Uni}(0,t_p)\).
+    Пусть \((\zeta,\eta)\) --- случайный вектор, который не зависит от
+    \(\xi\). Доказать, что процесс \((X_t)_{t\geq 0}\), где 
+    \(X_t = \zeta \cdot f(\eta t +\xi)\) стационарен в узком смысле. 
+\end{enumerate}
+\end{zadachsem}
+
+
+
+
+\printbibliography
+
+\end{document}
+
